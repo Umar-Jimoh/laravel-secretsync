@@ -17,6 +17,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Secret Sync Caching
+    |--------------------------------------------------------------------------
+    |
+    | If enabled, retrieved secrets will be cached to avoid repeated
+    | requests to the secrets provider. You can configure the time-to-live 
+    | (ttl) in seconds and the Laravel-supported cache driver to use.
+    |
+    */
+    
+    'cache' => [
+        'enabled' => env('SECRETSYNC_CACHE', true),
+        'ttl' => env('SECRETSYNC_CACHE_TTL', 300), // default 5 mins
+        'driver' => env('SECRETSYNC_CACHE_DRIVER', config('cache.default')),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Infisical Provider Configuration
     |--------------------------------------------------------------------------
     |
