@@ -4,18 +4,25 @@ namespace UmarJimoh\SecretSync\Caches;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
+use UmarJimoh\SecretSync\Helpers\AppKeyValidator;
 
 class SecretCache
 {
     public function get(): array
     {
+        $key = (new AppKeyValidator)->checkAppKey();
+
+        if (isset($key['error'])) {
+            return $key;
+        }
+        
         if (Cache::has('secretsync_data')) {
             return Crypt::decrypt(Cache::get('secretsync_data'));
         }
 
         return [];
     }
-
+    
     public function store($secrets): Void
     {
         if (config('secretsync.cache.enabled')) {
