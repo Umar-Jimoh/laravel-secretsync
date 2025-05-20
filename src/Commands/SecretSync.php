@@ -36,7 +36,14 @@ class SecretSync extends Command
         if ($provider) {
             $sync = FacadeSecretSync::syncFromProvider($provider);
 
-            isset($sync['error']) ? $this->fail($sync['error']) : $this->components->info('Secrets synced successfully!');
+            if (isset($sync['error'])) {
+                
+                $this->fail($sync['error']);
+            } else {
+                $this->callSilently('config:cache');
+
+                $this->components->info('Secrets synced successfully!'); 
+            }
         } else {
             $this->fail('No valid provider configured.');
         }
