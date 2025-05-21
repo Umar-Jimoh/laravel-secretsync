@@ -2,6 +2,8 @@
 
 namespace UmarJimoh\SecretSync;
 
+use Illuminate\Support\Facades\Artisan;
+use UmarJimoh\SecretSync\Caches\SecretCache;
 use UmarJimoh\SecretSync\Helpers\SecretMapper;
 use UmarJimoh\SecretSync\Interfaces\SecretProviderInterface;
 
@@ -65,18 +67,40 @@ use UmarJimoh\SecretSync\Interfaces\SecretProviderInterface;
 
 class SecretSync
 {
-    public function syncFromProvider(SecretProviderInterface $provider)
+    public function secretSyncService(SecretProviderInterface $provider): array
     {
-        $secrets = $provider->getSecrets();
+        $cache = app(SecretCache::class);
+        $secrets = $cache->get();
+        $useCache = true;
+
+        if ((empty($secrets))) {
+            $secrets = $this->syncFromProvider($provider);
+            $useCache = false;
+        }
 
         if (isset($secrets['error'])) {
             return ['error' => $secrets['error']];
         }
 
+        (new SecretMapper)->map($secrets);
+
+        Artisan::call('config:cache');
+
+        if (!$useCache) {
+            $cache->store($secrets);
+        }
+
+        return $secrets;
+    }
+
+    private function syncFromProvider(SecretProviderInterface $provider): array
+    {
+        $secrets = $provider->getSecrets();
+
         if (empty($secrets)) {
             return ['error' => "Failed to fetch secret from the provider: " . $provider->name()];
         }
 
-        (new SecretMapper)->map($secrets);
+        return $secrets;
     }
 }

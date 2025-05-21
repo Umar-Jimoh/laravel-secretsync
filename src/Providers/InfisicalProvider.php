@@ -4,20 +4,12 @@ namespace UmarJimoh\SecretSync\Providers;
 
 use Exception;
 use Illuminate\Support\Facades\Http;
-use UmarJimoh\SecretSync\Caches\SecretCache;
 use UmarJimoh\SecretSync\Interfaces\SecretProviderInterface;
 
 class InfisicalProvider implements SecretProviderInterface
 {
     public function getSecrets(): array
     {
-        $cache = app(SecretCache::class);
-        $cacheSecrets = $cache->get();
-
-        if (!empty($cacheSecrets)) {
-            return $cacheSecrets;
-        }
-
         $config = config('secretsync.infisical');
 
         try {
@@ -35,10 +27,8 @@ class InfisicalProvider implements SecretProviderInterface
                 $secrets[strtoupper($secret['secretKey'])] = $secret['secretValue'];
             }
 
-            $cache->store($secrets);
-
             return $secrets;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return [];
         }
     }
