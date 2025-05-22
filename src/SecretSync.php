@@ -97,6 +97,10 @@ class SecretSync
     {
         $secrets = $provider->getSecrets();
 
+        if (isset($secrets['debug'])) {
+            return ['error' => $secrets['debug']];
+        }
+
         if (empty($secrets)) {
             return ['error' => "Failed to fetch secret from the provider: " . $provider->name()];
         }
