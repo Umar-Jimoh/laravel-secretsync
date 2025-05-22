@@ -1,0 +1,44 @@
+{
+    "name": "umar-jimoh/secretsync",
+    "description": "Laravel secret sync package for third party secret manager",
+    "keywords": [ "php", "env", "config", "laravel", "dev"],
+    "license": "MIT",
+    "authors": [
+      {
+          "name": "Umar Jimoh",
+          "email": "umarjimoh@hotmail.com"
+      }
+  ],
+    "require": {
+      "php": "^8.2"
+  },
+    "require-dev": {
+      "laravel/pint": "^1.22",
+        "orchestra/testbench": "^10.2",
+        "pestphp/pest": "^3.8"
+    },
+    "autoload": {
+      "psr-4": {
+        "UmarJimoh\\SecretSync\\": "src/",
+        "UmarJimoh\\SecretSync\\Tests\\": "tests/"
+      }
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "UmarJimoh\\SecretSync\\SecretSyncServiceProvider"
+        ],
+        "aliases": {
+          "SecretSync": "UmarJimoh\\SecretSync\\Facades\\SecretSync"
+        }
+      }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+  }
+  
