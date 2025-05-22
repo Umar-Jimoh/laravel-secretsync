@@ -13,7 +13,8 @@ class SecretSync extends Command
      *
      * @var string
      */
-    protected $signature = 'secretsync';
+    protected $signature = 'secretsync
+                            {--debug : Gives more information about the error that occurred}';
 
     /**
      * The console command description.
@@ -27,6 +28,12 @@ class SecretSync extends Command
      */
     public function handle()
     {
+        $debug = $this->option('debug');
+
+        if ($debug) {
+            config(['secretsync.debug' => true]);
+        }
+
         $providerKey = config('secretsync.provider');
         $provider = match ($providerKey) {
             'infisical' => new InfisicalProvider(),
@@ -35,6 +42,16 @@ class SecretSync extends Command
 
         if ($provider) {
             $secrets = FacadeSecretSync::secretSyncService($provider);
+
+            if (isset($secrets['error']) && !is_string($secrets['error'])) {
+                $this->components->error(ucfirst($providerKey));
+                foreach ($secrets['error'] as $error => $value) {
+                    $error = strtoupper($error);
+                    $this->line("  <fg=red;options=bold>$error:</> {$value}");
+                    $this->newLine();
+                }
+                return self::FAILURE;
+            }
 
             if (isset($secrets['error'])) {
                 return $this->fail($secrets['error']);

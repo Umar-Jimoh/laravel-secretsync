@@ -34,6 +34,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Debug Mode for Secret Sync
+    |--------------------------------------------------------------------------
+    |
+    | This option enables debug output when running secretsync via the CLI.
+    | It can be helpful for displaying detailed error messages or additional
+    | information during development or troubleshooting.
+    |
+    */
+
+    'debug' => env('SECRETSYNC_DEBUG', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Infisical Provider Configuration
     |--------------------------------------------------------------------------
     |
@@ -46,7 +59,7 @@ return [
     'infisical' => [
         'token' => env('INFISICAL_TOKEN', 'token'),
         'api_endpoint' => env('INFISICAL_API_ENDPOINT', 'endpoint'),
-        'env' => env('INFISICAL_ENV', 'enviroment'),
+        'env' => env('INFISICAL_ENV', 'environment'),
         'workspace_id' => env('INFISICAL_WORK_ID', 'workId'),
     ],
 ];
