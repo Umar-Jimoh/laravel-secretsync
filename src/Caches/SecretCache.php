@@ -28,7 +28,7 @@ class SecretCache
         if (config('secretsync.cache.enabled')) {
             $driver = config('secretsync.cache.driver') ?? config('cache.default');
             $cache = Cache::store($driver);
-            $cache->put('secretsync_data', Crypt::encrypt($secrets), now()->addSeconds(config('secretsync.cache.ttl')) ?? 600);
+            $cache->put('secretsync_data', Crypt::encrypt($secrets), now()->addSeconds(config('secretsync.cache.ttl')) ?? 300);
         }
     }
 }
