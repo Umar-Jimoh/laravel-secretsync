@@ -1,7 +1,7 @@
 {
     "name": "umar-jimoh/laravel-secretsync",
     "description": "Sync secrets from secret managers into your Laravel app with ease.",
-    "keywords": [ "php","laravel", "secret-manager", "secretsync", "configuration", "env", "encryption", "cache", "production", "developer-tools" ]
+    "keywords": ["php", "laravel", "secret-manager", "secretsync", "configuration", "env", "encryption", "cache", "production", "developer-tools"],
     "license": "MIT",
     "authors": [
       {
