@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./docs/image.png" height="64" alt="SecretSync Logo">
+<img src="./docs/secretsync.png" height="80" alt="SecretSync Logo">
 </p>
 
 ## Introduction
@@ -31,16 +31,15 @@ INFISICAL_WORK_ID=
 
 ### 🔐 APP_KEY Requirement
 
-This package requires APP_KEY to be set in the .env file before the application boots.
+This package requires `APP_KEY` to be set in the `.env` file before the application boots.
 
-It uses Laravel’s encryption system to decrypt cached secrets. Without APP_KEY, the package will not work. 
+It uses Laravel’s encryption system to decrypt cached secrets. Without `APP_KEY`, the package will not work. 
 
 Ensure `APP_KEY` is set locally in `.env`:
 ```bash
 APP_KEY=base64:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=
 ```
-
-> **_NOTE:_** Do not attempt to fetch `APP_KEY` at runtime — it must be present in `.env`.
+>**_NOTE_**: Do not include or fetch `APP_KEY` from your secret manager. It must be defined only in the `.env` file to avoid conflicts and ensure proper Laravel encryption.
 
 Once the package is installed, you can sync secrets by running:
 ```bash
