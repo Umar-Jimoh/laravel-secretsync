@@ -1,7 +1,6 @@
-<div align=center style="display: flex; justify-content: center; align-items: center; gap: 1rem; text-align: center;">
-    <img src="./docs/secretsync.png" style="display: block;" height="50" alt="SecretSync Logo">
-    <p style="font-size: 36px; font-weight: 600; margin: 0; ">Laravel <span style="color: #A1A09A; font-weight: 200;">SecretSync</span></p>
-</div>
+<p align="center">
+    <img src="./docs/image.png" height="64" alt="SecretSync Logo">
+</p>
 
 ## Introduction
 This package allows you to easily sync secrets from secret managers into your Laravel app. Currently, only <strong>Infisical</strong> is supported.
