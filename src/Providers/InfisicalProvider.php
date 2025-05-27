@@ -15,7 +15,7 @@ class InfisicalProvider implements SecretProviderInterface
         $debug = config('secretsync.debug');
 
         try {
-            $response = Http::withToken($config['token'])->get($config['api_endpoint'], [
+            $response = Http::withToken($config['token'])->get($config['api_endpoint'] ?? '', [
                 'environment' => $config['env'],
                 'workspaceId' => $config['workspace_id'],
             ]);
