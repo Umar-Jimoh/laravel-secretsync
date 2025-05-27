@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'provider' => env('SECRETSYNC_PROVIDER'),
+    'provider' => env('SECRETSYNC_PROVIDER', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,8 +27,8 @@ return [
     */
     
     'cache' => [
-        'enabled' => env('SECRETSYNC_CACHE', true),
-        'ttl' => env('SECRETSYNC_CACHE_TTL', 300), // default 5 mins
+        'enabled' => (bool) env('SECRETSYNC_CACHE', false),
+        'ttl' => env('SECRETSYNC_CACHE_TTL', 300), // Time in seconds (default: 5 mins)
         'driver' => env('SECRETSYNC_CACHE_DRIVER', config('cache.default')),
     ],
 
@@ -43,7 +43,7 @@ return [
     |
     */
 
-    'debug' => env('SECRETSYNC_DEBUG', false),
+    'debug' => (bool) env('SECRETSYNC_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -57,9 +57,9 @@ return [
     */
 
     'infisical' => [
-        'token' => env('INFISICAL_TOKEN', 'token'),
-        'api_endpoint' => env('INFISICAL_API_ENDPOINT', 'endpoint'),
-        'env' => env('INFISICAL_ENV', 'environment'),
-        'workspace_id' => env('INFISICAL_WORK_ID', 'workId'),
+        'token' => env('INFISICAL_TOKEN', null),
+        'api_endpoint' => env('INFISICAL_API_ENDPOINT', null),
+        'env' => env('INFISICAL_ENV', null),
+        'workspace_id' => env('INFISICAL_WORK_ID', null),
     ],
 ];
