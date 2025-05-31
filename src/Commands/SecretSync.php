@@ -5,7 +5,7 @@ namespace UmarJimoh\SecretSync\Commands;
 
 use Illuminate\Console\Command;
 use UmarJimoh\SecretSync\Providers\InfisicalProvider;
-use UmarJimoh\SecretSync\facades\SecretSync as FacadeSecretSync;
+use UmarJimoh\SecretSync\Facades\SecretSync as FacadeSecretSync;
 
 class SecretSync extends Command
 {
