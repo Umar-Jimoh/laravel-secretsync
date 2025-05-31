@@ -10,7 +10,7 @@ class SecretSyncServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/secretsync.php', 'secretsync');
+        $this->mergeConfigFrom(dirname(__DIR__) . '/config/secretsync.php', 'secretsync');
 
         $this->app->singleton('secretsync', function () {
             return new SecretSync();
@@ -20,7 +20,7 @@ class SecretSyncServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/secretsync.php' => config_path('secretsync.php'),
+            dirname(__DIR__) . '/config/secretsync.php' => config_path('secretsync.php'),
         ], 'config');
 
         \Illuminate\Support\Facades\Event::listen(CommandStarting::class, function(CommandStarting $event) {
