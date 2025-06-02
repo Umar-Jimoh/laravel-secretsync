@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace UmarJimoh\SecretSync;
@@ -71,12 +72,19 @@ class SecretSync
     public function secretSyncService(SecretProviderInterface $provider): array
     {
         $cache = app(SecretCache::class);
-        $secrets = $cache->get();
-        $useCache = true;
+        $useCache = false;
+        $secrets = [];
 
-        if ((empty($secrets))) {
+        if (config('secretsync.cache.enabled')) {
+            $secrets = $cache->get();
+
+            if (!empty($secrets)) {
+                $useCache = true;
+            }
+        }
+
+        if (empty($secrets)) {
             $secrets = $this->syncFromProvider($provider);
-            $useCache = false;
         }
 
         if (isset($secrets['error'])) {
@@ -87,8 +95,11 @@ class SecretSync
 
         Artisan::call('config:cache');
 
-        if (!$useCache) {
-            $cache->store($secrets);
+        if (!$useCache && config('secretsync.cache.enabled')) {
+            $message = $cache->store($secrets);
+            if (isset($message['warning'])) {
+                $secrets['warning'] = $message['warning'];
+            }
         }
 
         return $secrets;

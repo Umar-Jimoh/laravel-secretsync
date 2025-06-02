@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace UmarJimoh\SecretSync\Commands;
@@ -57,6 +58,10 @@ class SecretSync extends Command
             if (isset($secrets['error'])) {
                 return $this->fail($secrets['error']);
             }
+
+            if (isset($secrets['warning'])) {
+                $this->components->warn($secrets['warning']);
+            };
 
             $this->components->info('Secrets synced successfully!');
         } else {

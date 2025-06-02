@@ -1,5 +1,11 @@
 <p align="center">
 <img src="./docs/secretsync.png" height="80" alt="SecretSync Logo">
+<p align="center">
+        <!-- <a href="https://github.com/umar-jimoh/laravel-secretsync/actions"><img alt="GitHub Workflow Status (master)" src="https://github.com/umar-jimoh/laravel-secretsync/actions/workflows/tests.yml/badge.svg"></a> -->
+        <a href="https://packagist.org/packages/umar-jimoh/laravel-secretsync"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/umar-jimoh/laravel-secretsync"></a>
+        <a href="https://packagist.org/packages/umar-jimoh/laravel-secretsync"><img alt="Latest Version" src="https://img.shields.io/packagist/v/umar-jimoh/laravel-secretsync"></a>
+        <a href="https://packagist.org/packages/umar-jimoh/laravel-secretsync"><img alt="License" src="https://img.shields.io/packagist/l/umar-jimoh/laravel-secretsync"></a>
+    </p>
 </p>
 
 ## Introduction
@@ -29,17 +35,7 @@ INFISICAL_ENV=
 INFISICAL_WORK_ID="your-infisical-project-id"
 ```
 
-### 🔐 APP_KEY Requirement
-
-This package requires `APP_KEY` to be set in the `.env` file before the application boots.
-
-It uses Laravel’s encryption system to decrypt cached secrets. Without `APP_KEY`, the package will not work. 
-
-Ensure `APP_KEY` is set locally in `.env`:
-```bash
-APP_KEY=base64:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=
-```
->**_NOTE_**: Do not include or fetch `APP_KEY` from your secret manager. It must be defined only in the `.env` file to avoid conflicts and ensure proper Laravel encryption.
+>**_NOTE_**: Make sure to include and fetch `APP_KEY` from your secret manager. It must not be defined in the `.env` file to avoid conflicts and to ensure proper Laravel encryption.
 
 Once the package is installed, you can sync secrets by running:
 ```bash
