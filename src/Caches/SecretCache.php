@@ -1,35 +1,37 @@
 <?php
+
 declare(strict_types=1);
 
 namespace UmarJimoh\SecretSync\Caches;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Crypt;
-use UmarJimoh\SecretSync\Helpers\AppKeyValidator;
 
 class SecretCache
 {
     public function get(): array
     {
-        $key = (new AppKeyValidator)->checkAppKey();
+        try {
+            if (Cache::has('secretsync_data')) {
+                return Crypt::decrypt(Cache::get('secretsync_data'));
+            }
 
-        if (isset($key['error'])) {
-            return $key;
+            return [];
+        } catch (\Exception $e) {
+            return [];
         }
-        
-        if (Cache::has('secretsync_data')) {
-            return Crypt::decrypt(Cache::get('secretsync_data'));
-        }
-
-        return [];
     }
-    
-    public function store($secrets): Void
+
+    public function store($secrets)
     {
-        if (config('secretsync.cache.enabled')) {
-            $driver = config('secretsync.cache.driver') ?? config('cache.default');
-            $cache = Cache::store($driver);
-            $cache->put('secretsync_data', Crypt::encrypt($secrets), now()->addSeconds(config('secretsync.cache.ttl')) ?? 300);
+        try {
+            if (config('secretsync.cache.enabled')) {
+                $driver = config('secretsync.cache.driver') ?? config('cache.default');
+                $cache = Cache::store($driver);
+                $cache->put('secretsync_data', Crypt::encrypt($secrets), now()->addSeconds(config('secretsync.cache.ttl', 300)));
+            }
+        } catch (\Exception $e) {
+            return ['warning' => "Failed to store synced secrets: Either database does not exist or No application encryption key has been specified"];
         }
     }
 }
