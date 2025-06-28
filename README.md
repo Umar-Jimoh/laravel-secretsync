@@ -1,9 +1,9 @@
 <p align="center">
-<img src="./docs/secretsync.png" height="80" alt="SecretSync Logo">
+<img src="./docs/secretsync.png" height="65" alt="SecretSync Logo">
 <p align="center">
-        <!-- <a href="https://github.com/umar-jimoh/laravel-secretsync/actions"><img alt="GitHub Workflow Status (master)" src="https://github.com/umar-jimoh/laravel-secretsync/actions/workflows/tests.yml/badge.svg"></a> -->
         <a href="https://packagist.org/packages/umar-jimoh/laravel-secretsync"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/umar-jimoh/laravel-secretsync"></a>
         <a href="https://packagist.org/packages/umar-jimoh/laravel-secretsync"><img alt="Latest Version" src="https://img.shields.io/packagist/v/umar-jimoh/laravel-secretsync"></a>
+        <a href="https://packagist.org/packages/umar-jimoh/laravel-secretsync"><img alt="Contribution" src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg"></a>
         <a href="https://packagist.org/packages/umar-jimoh/laravel-secretsync"><img alt="License" src="https://img.shields.io/packagist/l/umar-jimoh/laravel-secretsync"></a>
     </p>
 </p>
@@ -66,7 +66,7 @@ SECRETSYNC_DEBUG=true
 > **_NOTE:_** In production if you run `php artisan optimize` make sure you run `php artisan secretsync` afterward to ensure secrets are properly synced. 
 
 ## 🤝 Contributing
-Feel free to open issues or pull requests to improve the package. I welcome contributions that help make this package better!
+Please see [CONTRIBUTING](https://github.com/Umar-Jimoh/laravel-secretsync/blob/main/CONTRIBUTE.md) for details
 
 ## 📧 Contact
 If you have any questions, feel free to reach out to me at umarjimoh@hotmail.com or via **[Twitter](https://x.com/umarjimoh_dev)**.
