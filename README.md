@@ -66,7 +66,7 @@ SECRETSYNC_DEBUG=true
 > **_NOTE:_** In production if you run `php artisan optimize` make sure you run `php artisan secretsync` afterward to ensure secrets are properly synced. 
 
 ## 🤝 Contributing
-Please see [CONTRIBUTING](https://github.com/Umar-Jimoh/laravel-secretsync/blob/main/CONTRIBUTE.md) for details
+Please see [CONTRIBUTING](https://github.com/Umar-Jimoh/laravel-secretsync/blob/HEAD/CONTRIBUTING.md) for details
 
 ## 📧 Contact
 If you have any questions, feel free to reach out to me at umarjimoh@hotmail.com or via **[Twitter](https://x.com/umarjimoh_dev)**.
@@ -74,5 +74,5 @@ If you have any questions, feel free to reach out to me at umarjimoh@hotmail.com
 
 
 ## 🔗 License
-This package is open-source software licensed under the . **[MIT License](https://github.com/Umar-Jimoh/laravel-secretsync/blob/main/LICENSE)**.
+This package is open-source software licensed under the . **[MIT License](https://github.com/Umar-Jimoh/laravel-secretsync/blob/HEAD/LICENSE)**.
 
