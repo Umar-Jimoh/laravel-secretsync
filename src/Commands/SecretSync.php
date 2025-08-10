@@ -6,6 +6,7 @@ namespace UmarJimoh\SecretSync\Commands;
 
 use Illuminate\Console\Command;
 use UmarJimoh\SecretSync\Providers\InfisicalProvider;
+use UmarJimoh\SecretSync\Providers\DopplerProvider;
 use UmarJimoh\SecretSync\Facades\SecretSync as FacadeSecretSync;
 
 class SecretSync extends Command
@@ -39,6 +40,7 @@ class SecretSync extends Command
         $providerKey = config('secretsync.provider');
         $provider = match ($providerKey) {
             'infisical' => new InfisicalProvider(),
+            'doppler' => new DopplerProvider(),
             default => null,
         };
 
