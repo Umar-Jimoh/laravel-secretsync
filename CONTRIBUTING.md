@@ -70,7 +70,7 @@ Please take a moment to review this guide to make the contribution process easy 
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the [MIT License](https://github.com/Umar-Jimoh/laravel-secretsync/blob/HEAD/LICENSE).
+By contributing, you agree that your contributions will be licensed under the [MIT License](https://github.com/Umar-Jimoh/laravel-secretsync/blob/main/LICENSE).
 
 ---
 
