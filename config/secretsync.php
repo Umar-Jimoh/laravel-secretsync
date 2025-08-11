@@ -62,11 +62,4 @@ return [
         'env' => env('INFISICAL_ENV', null),
         'workspace_id' => env('INFISICAL_WORK_ID', null),
     ],
-
-    'doppler' => [
-        'token' => env('DOPPLER_TOKEN', ''),
-        'endpoint' => env('DOPPLER_API_ENDPOINT', ''),
-        'project' => env('DOPPLER_PROJECT', ''), // optional
-        'config' => env('DOPPLER_CONFIG', ''),   // optional
-    ],
 ];
