@@ -63,17 +63,6 @@ return [
         'workspace_id' => env('INFISICAL_WORK_ID', null),
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Doppler Provider Configuration
-    |--------------------------------------------------------------------------
-    |
-    | If you're using the "doppler" provider, you can configure it here.
-    | These values will be used when connecting to the Doppler API 
-    | to retrieve your secrets.
-    |
-    */
-
     'doppler' => [
         'token' => env('DOPPLER_TOKEN', ''),
         'endpoint' => env('DOPPLER_API_ENDPOINT', ''),
